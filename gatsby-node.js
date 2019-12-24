@@ -32,7 +32,7 @@ exports.createPages = async ({ graphql, actions }) => {
                 }
             }
         }
-    `)
+    `);
     
     result.data.allSoundsCsv.nodes.forEach(node => {
         createPage({
@@ -43,6 +43,6 @@ exports.createPages = async ({ graphql, actions }) => {
                 // in page queries as GraphQL variables.
                 slug: node.fields.slug,
             },
-        })
-    })
+        });
+    });
 }
