@@ -7,7 +7,6 @@ export default ({ data }) => {
     const sound = data.allSoundsCsv.nodes[0];
     return (
         <div>
-            Hey, Dude.
             <SoundPlayer src={sound.mp3} />
             <a href={sound.mp3} download>MP3</a>
             <a href={sound.wav} download>WAV</a>
