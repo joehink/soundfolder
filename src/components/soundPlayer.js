@@ -61,17 +61,17 @@ export default class SoundPlayer extends Component {
     }
     initializeAnalyser() {
         const context = new AudioContext();
-        const src = context.createMediaElementSource(this.sound);
-        const analyser = context.createAnalyser();
+        this.src = context.createMediaElementSource(this.sound);
+        this.analyser = context.createAnalyser();
 
         const ctx = this.refs.canvas.getContext("2d");
 
-        src.connect(analyser);
-        analyser.connect(context.destination);
+        this.src.connect(this.analyser);
+        this.analyser.connect(context.destination);
 
-        analyser.fftSize = 256;
+        this.analyser.fftSize = 256;
 
-        const bufferLength = analyser.frequencyBinCount;
+        const bufferLength = this.analyser.frequencyBinCount;
 
         const dataArray = new Uint8Array(bufferLength);
 
@@ -80,12 +80,14 @@ export default class SoundPlayer extends Component {
 
         const barWidth = (WIDTH / bufferLength) * 2.5;
 
+        const self = this;
+
         function renderFrame() {
             const rafId = requestAnimationFrame(renderFrame);
 
             let x = 0;
 
-            analyser.getByteFrequencyData(dataArray);
+            self.analyser.getByteFrequencyData(dataArray);
 
             ctx.fillStyle = "#FFF";
             ctx.fillRect(0, 0, WIDTH, HEIGHT);
@@ -93,14 +95,10 @@ export default class SoundPlayer extends Component {
             for (let i = 0; i < bufferLength; i++) {
                 let barHeight = dataArray[i];
                 
-                const r = barHeight + (25 * (i/bufferLength));
-                const g = 250 * (i/bufferLength);
-                const b = 50;
-
                 ctx.fillStyle = "red";
                 ctx.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
 
-                x += barWidth + 1;
+                x += barWidth - 2;
             }
 
             return rafId;
@@ -130,10 +128,15 @@ export default class SoundPlayer extends Component {
             });
         });
     }
+    componentWillUnmount() {
+        cancelAnimationFrame(this.rafId);
+        this.analyser.disconnect();
+        this.src.disconnect();
+    }
     render() {
         return (
             <div>
-                <canvas ref="canvas" width="300" height="300"></canvas>
+                <canvas ref="canvas" width="700" height="300"></canvas>
                 <button onClick={this.togglePlayback}>{this.state.isPlaying ? 'Pause' : 'Play'}</button>
                 <div
                     style={{ height: 100, backgroundColor: 'black', position: 'relative' }}
