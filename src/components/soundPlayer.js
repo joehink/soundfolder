@@ -130,8 +130,14 @@ export default class SoundPlayer extends Component {
     }
     componentWillUnmount() {
         cancelAnimationFrame(this.rafId);
-        this.analyser.disconnect();
-        this.src.disconnect();
+        
+        if (this.analyser) {
+            this.analyser.disconnect();    
+        }
+        
+        if (this.src) {
+            this.src.disconnect();
+        }
     }
     render() {
         return (

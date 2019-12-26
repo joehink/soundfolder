@@ -1,0 +1,46 @@
+.nav {
+    display: block;
+    padding: 1rem 0;
+    .navLinks {
+        display: flex;
+        align-items: center;
+        .brand {
+            display: inline-block;
+            img {
+                max-width: 110px;
+                margin: 0;
+            }
+        }
+        .link {
+            font-size: .75rem;
+            text-decoration: none;
+            color: $black;
+            margin-left: 1rem;
+            display: inline-block;
+        }
+    }
+}
+
+@media(min-width: $md) {
+    .nav {
+        padding: 1.5rem 0;
+        .navLinks {
+            .brand {
+                img {
+                    max-width: 225px;
+                }
+            }
+            .link {
+                margin-left: 2rem;
+                font-size: 1rem;
+            }
+        }
+    }
+}
+
+@media(min-width: $lg) {
+    .nav {
+        padding: 2rem 0;
+        display: flex;
+    }
+}
