@@ -1,0 +1,18 @@
+.container {
+    width: 100%;
+    padding: 0 1rem;
+    margin: 0 auto;
+}
+
+.container.lg {
+    max-width: calc(1400px + 4rem);
+} 
+.container.sm {
+    max-width: calc(700px + 4rem);
+} 
+
+@media(min-width: $sm) {
+    .container {
+        padding: 0 2rem;
+    }
+}
