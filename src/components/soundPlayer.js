@@ -60,6 +60,7 @@ export default class SoundPlayer extends Component {
         });
     }
     initializeAnalyser() {
+        window.AudioContext = window.AudioContext || window.webkitAudioContext;
         const context = new AudioContext();
         this.src = context.createMediaElementSource(this.sound);
         this.analyser = context.createAnalyser();
@@ -89,13 +90,13 @@ export default class SoundPlayer extends Component {
 
             self.analyser.getByteFrequencyData(dataArray);
 
-            ctx.fillStyle = "#FFF";
+            ctx.fillStyle = "#FAFAFA";
             ctx.fillRect(0, 0, WIDTH, HEIGHT);
 
             for (let i = 0; i < bufferLength; i++) {
                 let barHeight = dataArray[i];
                 
-                ctx.fillStyle = "red";
+                ctx.fillStyle = "#008457";
                 ctx.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
 
                 x += barWidth - 2;
@@ -130,7 +131,7 @@ export default class SoundPlayer extends Component {
     }
     componentWillUnmount() {
         cancelAnimationFrame(this.rafId);
-        
+
         if (this.analyser) {
             this.analyser.disconnect();    
         }
@@ -141,16 +142,23 @@ export default class SoundPlayer extends Component {
     }
     render() {
         return (
-            <div>
-                <canvas ref="canvas" width="700" height="300"></canvas>
-                <button onClick={this.togglePlayback}>{this.state.isPlaying ? 'Pause' : 'Play'}</button>
-                <div
-                    style={{ height: 100, backgroundColor: 'black', position: 'relative' }}
-                    onClick={this.setCurrentTime}
-                    ref={this.audioSeekBar}
-                >
-                    <div style={{ position: 'absolute', top: 0, height: '100%', width: '100%', backgroundColor: 'red', transform: `scaleX(${(this.state.currentTime / this.state.duration)})`, transformOrigin: 'left' }}></div>
-                    <span style={{ position: 'relative' }}>{this.formatTime(this.state.currentTime)} / {this.formatTime(this.state.duration)}</span>
+            <div className="soundPlayer">
+                <canvas className="analyser" ref="canvas" height="300"></canvas>
+                <div className="player">
+                    <button 
+                        onClick={this.togglePlayback}
+                        className="play"
+                    >
+                        <i className={`fa ${this.state.isPlaying ? 'fa-pause' : 'fa-play'}`} aria-hidden="true"></i>
+                    </button>
+                    <div
+                        className="seekBar"
+                        onClick={this.setCurrentTime}
+                        ref={this.audioSeekBar}
+                    >
+                        <div className="progress" style={{ transform: `scaleX(${(this.state.currentTime / this.state.duration)}` }}></div>
+                        <span className="time">{this.formatTime(this.state.currentTime)} / {this.formatTime(this.state.duration)}</span>
+                    </div>
                 </div>
             </div>
         )
