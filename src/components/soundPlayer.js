@@ -12,7 +12,6 @@ export default class SoundPlayer extends Component {
 
         this.togglePlayback = this.togglePlayback.bind(this);
         this.setCurrentTime = this.setCurrentTime.bind(this);
-        this.initializeAnalyser = this.initializeAnalyser.bind(this);
 
         this.state = {
             currentTime: 0,
@@ -25,20 +24,13 @@ export default class SoundPlayer extends Component {
     togglePlayback() {
         if (this.state.isPlaying) {
             this.sound.pause();
-            cancelAnimationFrame(this.rafId);
         } else {
-            
-            this.initializeAnalyser();
-            // if (!this.state.hasBeenPlayed) {
-            //     this.initializeAnalyser();
-            //     this.setState({ hasBeenPlayed: true });
-            // } else {
-            //     this.sound.play();
-            // }
+            this.sound.play();
         }
 
         this.setState({
-            isPlaying: !this.state.isPlaying
+            isPlaying: !this.state.isPlaying,
+            hasBeenPlayed: true
         });
     }
     formatTime(totalSeconds) {
@@ -62,91 +54,6 @@ export default class SoundPlayer extends Component {
             currentTime: this.state.duration * pos
         });
     }
-    initializeAnalyser() {
-        window.AudioContext = window.AudioContext || window.webkitAudioContext;
-
-        this.context = new AudioContext();
-        
-        this.src = this.context.createMediaElementSource(this.sound);
-        this.analyser = this.context.createAnalyser();
-
-        const ctx = this.refs.canvas.getContext("2d");
-
-        this.src.connect(this.analyser);
-        this.analyser.connect(this.context.destination);
-
-        this.analyser.fftSize = 256;
-
-        const bufferLength = this.analyser.frequencyBinCount;
-
-        const dataArray = new Uint8Array(bufferLength);
-
-        const WIDTH = this.refs.canvas.width;
-        const HEIGHT = this.refs.canvas.height;
-
-        const barWidth = (WIDTH / bufferLength) * 2.5;
-
-        const self = this;
-
-        function roundRect(x, y, width, height, radius, fill, stroke) {
-            if (typeof stroke === 'undefined') {
-                stroke = true;
-            }
-            if (typeof radius === 'undefined') {
-                radius = 5;
-            }
-            if (typeof radius === 'number') {
-                radius = {tl: radius, tr: radius, br: radius, bl: radius};
-            } else {
-                var defaultRadius = {tl: 0, tr: 0, br: 0, bl: 0};
-                for (var side in defaultRadius) {
-                    radius[side] = radius[side] || defaultRadius[side];
-                }
-            }
-            ctx.beginPath();
-            ctx.moveTo(x + radius.tl, y);
-            ctx.lineTo(x + width - radius.tr, y);
-            ctx.quadraticCurveTo(x + width, y, x + width, y + radius.tr);
-            ctx.lineTo(x + width, y + height - radius.br);
-            ctx.quadraticCurveTo(x + width, y + height, x + width - radius.br, y + height);
-            ctx.lineTo(x + radius.bl, y + height);
-            ctx.quadraticCurveTo(x, y + height, x, y + height - radius.bl);
-            ctx.lineTo(x, y + radius.tl);
-            ctx.quadraticCurveTo(x, y, x + radius.tl, y);
-            ctx.closePath();
-            if (fill) {
-                ctx.fill();
-            }
-            if (stroke) {
-                ctx.stroke();
-            }
-        }
-
-        function renderFrame() {
-            self.rafId = requestAnimationFrame(renderFrame);
-
-            let x = 0;
-
-            self.analyser.getByteFrequencyData(dataArray);
-
-            ctx.fillStyle = "#FAFAFA";
-            ctx.fillRect(0, 0, WIDTH, HEIGHT);
-
-            for (let i = 0; i < bufferLength; i++) {
-                let barHeight = dataArray[i];
-                
-                ctx.fillStyle = "#008457";
-                roundRect(x, HEIGHT - barHeight, barWidth, barHeight, { tl: 8, tr: 8 }, true, false);
-
-                x += barWidth + 2.65;
-            }
-
-            console.log(self.rafId);
-        };
-
-        this.sound.play();
-        renderFrame();
-    }
     componentDidMount() {
         this.sound.addEventListener("loadeddata", event => {
             this.setState({
@@ -168,21 +75,9 @@ export default class SoundPlayer extends Component {
             });
         });
     }
-    componentWillUnmount() {
-        cancelAnimationFrame(this.rafId);
-
-        if (this.analyser) {
-            this.analyser.disconnect();    
-        }
-        
-        if (this.src) {
-            this.src.disconnect();
-        }
-    }
     render() {
         return (
             <div className="soundPlayer">
-                <canvas className="analyser" ref="canvas" height="200" width="700"></canvas>
                 <div className="player">
                     <button 
                         onClick={this.togglePlayback}
@@ -195,7 +90,7 @@ export default class SoundPlayer extends Component {
                         onClick={this.setCurrentTime}
                         ref={this.audioSeekBar}
                     >
-                        <div className="progress" style={{ transform: `scaleX(${(this.state.currentTime / this.state.duration)}` }}></div>
+                        <div className="progress" style={{ transform: `scaleX(${!this.state.hasBeenPlayed ? 0 : (this.state.currentTime / this.state.duration)}` }}></div>
                         <span className="time">{this.formatTime(this.state.currentTime)} / {this.formatTime(this.state.duration)}</span>
                     </div>
                 </div>
