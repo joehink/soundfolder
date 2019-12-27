@@ -1,24 +1,43 @@
-import React from "react";
+import React, { Component } from "react";
 import { graphql } from "gatsby";
 
 import Container from "../components/container";
+import DownloadLink from "../components/downloadLink";
 import Nav from "../components/nav";
 import SoundPlayer from "../components/soundPlayer";
+import Tag from "../components/tag";
 
-export default ({ data }) => {
-    const sound = data.allSoundsCsv.nodes[0];
-    return (
-        <>
-            <Container>
-                <Nav />
-            </Container>
-            <Container size="sm">
-                <SoundPlayer src={sound.mp3} />
-                <a href={sound.mp3} download>MP3</a>
-                <a href={sound.wav} download>WAV</a>
-            </Container>
-        </>
-    );
+export default class Sound extends Component {
+    constructor(props) {
+        super(props);
+
+        this.renderTags = this.renderTags.bind(this);
+    }
+    renderTags() {
+        const sound = this.props.data.allSoundsCsv.nodes[0];
+
+        return sound.categories.split(',').map(category => {
+            return <Tag to={`/${category}`} key={category}>{ category }</Tag>
+        })
+    }
+    render() {
+        const sound = this.props.data.allSoundsCsv.nodes[0];
+        return (
+            <div id="sound">
+                <Container>
+                    <Nav />
+                </Container>
+                <Container size="sm">
+                    <h1>{ sound.title }</h1>
+                    { this.renderTags() }
+                    <SoundPlayer src={sound.mp3} />
+                    <p className="description">{ sound.description }</p>
+                    <DownloadLink href={sound.wav}>WAV</DownloadLink>
+                    <DownloadLink href={sound.mp3} mp3={true}>MP3</DownloadLink>
+                </Container>
+            </div>
+        )
+    }
 }
 
 export const query = graphql`

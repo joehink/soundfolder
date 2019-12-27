@@ -143,7 +143,7 @@ export default class SoundPlayer extends Component {
     render() {
         return (
             <div className="soundPlayer">
-                <canvas className="analyser" ref="canvas" height="300"></canvas>
+                <canvas className="analyser" ref="canvas" height="200"></canvas>
                 <div className="player">
                     <button 
                         onClick={this.togglePlayback}
