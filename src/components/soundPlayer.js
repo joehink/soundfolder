@@ -25,13 +25,16 @@ export default class SoundPlayer extends Component {
     togglePlayback() {
         if (this.state.isPlaying) {
             this.sound.pause();
+            cancelAnimationFrame(this.rafId);
         } else {
-            if (!this.state.hasBeenPlayed) {
-                this.initializeAnalyser();
-                this.setState({ hasBeenPlayed: true });
-            } else {
-                this.sound.play();
-            }
+            
+            this.initializeAnalyser();
+            // if (!this.state.hasBeenPlayed) {
+            //     this.initializeAnalyser();
+            //     this.setState({ hasBeenPlayed: true });
+            // } else {
+            //     this.sound.play();
+            // }
         }
 
         this.setState({
@@ -61,14 +64,16 @@ export default class SoundPlayer extends Component {
     }
     initializeAnalyser() {
         window.AudioContext = window.AudioContext || window.webkitAudioContext;
-        const context = new AudioContext();
-        this.src = context.createMediaElementSource(this.sound);
-        this.analyser = context.createAnalyser();
+
+        this.context = new AudioContext();
+        
+        this.src = this.context.createMediaElementSource(this.sound);
+        this.analyser = this.context.createAnalyser();
 
         const ctx = this.refs.canvas.getContext("2d");
 
         this.src.connect(this.analyser);
-        this.analyser.connect(context.destination);
+        this.analyser.connect(this.context.destination);
 
         this.analyser.fftSize = 256;
 
@@ -83,8 +88,42 @@ export default class SoundPlayer extends Component {
 
         const self = this;
 
+        function roundRect(x, y, width, height, radius, fill, stroke) {
+            if (typeof stroke === 'undefined') {
+                stroke = true;
+            }
+            if (typeof radius === 'undefined') {
+                radius = 5;
+            }
+            if (typeof radius === 'number') {
+                radius = {tl: radius, tr: radius, br: radius, bl: radius};
+            } else {
+                var defaultRadius = {tl: 0, tr: 0, br: 0, bl: 0};
+                for (var side in defaultRadius) {
+                    radius[side] = radius[side] || defaultRadius[side];
+                }
+            }
+            ctx.beginPath();
+            ctx.moveTo(x + radius.tl, y);
+            ctx.lineTo(x + width - radius.tr, y);
+            ctx.quadraticCurveTo(x + width, y, x + width, y + radius.tr);
+            ctx.lineTo(x + width, y + height - radius.br);
+            ctx.quadraticCurveTo(x + width, y + height, x + width - radius.br, y + height);
+            ctx.lineTo(x + radius.bl, y + height);
+            ctx.quadraticCurveTo(x, y + height, x, y + height - radius.bl);
+            ctx.lineTo(x, y + radius.tl);
+            ctx.quadraticCurveTo(x, y, x + radius.tl, y);
+            ctx.closePath();
+            if (fill) {
+                ctx.fill();
+            }
+            if (stroke) {
+                ctx.stroke();
+            }
+        }
+
         function renderFrame() {
-            const rafId = requestAnimationFrame(renderFrame);
+            self.rafId = requestAnimationFrame(renderFrame);
 
             let x = 0;
 
@@ -97,16 +136,16 @@ export default class SoundPlayer extends Component {
                 let barHeight = dataArray[i];
                 
                 ctx.fillStyle = "#008457";
-                ctx.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
+                roundRect(x, HEIGHT - barHeight, barWidth, barHeight, { tl: 8, tr: 8 }, true, false);
 
-                x += barWidth - 2;
+                x += barWidth + 2.65;
             }
 
-            return rafId;
+            console.log(self.rafId);
         };
 
         this.sound.play();
-        this.rafId = renderFrame();
+        renderFrame();
     }
     componentDidMount() {
         this.sound.addEventListener("loadeddata", event => {
@@ -143,7 +182,7 @@ export default class SoundPlayer extends Component {
     render() {
         return (
             <div className="soundPlayer">
-                <canvas className="analyser" ref="canvas" height="200"></canvas>
+                <canvas className="analyser" ref="canvas" height="200" width="700"></canvas>
                 <div className="player">
                     <button 
                         onClick={this.togglePlayback}
