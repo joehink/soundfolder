@@ -46,9 +46,10 @@ export default class SoundPlayer extends Component {
             cursorColor: '#008457',
             cursorWidth: 2,
             responsive: true,
-            barWidth: 4,
-            barHeight: 2,
-            barRadius: 4,
+            normalize: true,
+            // barWidth: 4,
+            // barHeight: 2,
+            // barRadius: 4,
         });
 
         this.wavesurfer.load(this.props.src);
@@ -77,6 +78,9 @@ export default class SoundPlayer extends Component {
                 isPlaying: false
             });
         });
+    }
+    componentWillUnmount() {
+        this.wavesurfer.destroy();
     }
     render() {
         return (

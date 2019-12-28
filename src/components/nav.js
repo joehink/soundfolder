@@ -14,7 +14,7 @@ export default ({ white = false }) => {
     return (
         <nav className={navClasses}>
             <div className="navLinks">
-                <Link to="/" className="brand"><img src={white ? logoWhite : logo} /></Link>
+                <Link to="/" className="brand"><img src={white ? logoWhite : logo} alt="Sound Folder logo" /></Link>
                 <Link to="/categories" className="link">Categories</Link>
                 <Link to="/faq" className="link">Why is it free?</Link>
             </div>
