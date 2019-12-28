@@ -1,11 +1,17 @@
 import React from "react";
 import { graphql } from "gatsby";
 
+import Container from "../components/container";
+import Nav from "../components/nav";
+
 export default ({ data, pageContext }) => {
     return (
         <div>
-            Hey, Dude.
-            { pageContext.category }
+            <Container>
+                <Nav />
+                Hey, Dude.
+                { pageContext.category }
+            </Container>
         </div>
     )
 }
