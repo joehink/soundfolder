@@ -9,7 +9,7 @@ const path = require(`path`);
 exports.onCreateNode = ({ node, getNode, actions }) => {
     const { createNodeField } = actions;
     if (node.internal.type === `SoundsCsv`) {
-        const slug = `/${node.title.toLowerCase().replace(' ', '_')}_${node.id}`;
+        const slug = `/${node.title.toLowerCase().split(' ').join('_')}_${node.id}`;
         createNodeField({
             node,
             name: `slug`,
@@ -26,6 +26,7 @@ exports.createPages = async ({ graphql, actions }) => {
             allSoundsCsv {
                 nodes {
                     title
+                    categories
                     fields {
                         slug
                     }
@@ -33,15 +34,33 @@ exports.createPages = async ({ graphql, actions }) => {
             }
         }
     `);
-    
-    result.data.allSoundsCsv.nodes.forEach(node => {
+
+    // create page for each category
+    result.data.allSoundsCsv.nodes
+        .flatMap(sound => sound.categories.split(','))
+        .reduce((uniqueCategories, category) => 
+            uniqueCategories.includes(category) ? uniqueCategories : [...uniqueCategories, category], [])
+        .forEach(category => {
+            createPage({
+                path: category,
+                component: path.resolve(`./src/templates/category.js`),
+                context: {
+                    category,
+                    categoryRegex: `/${category}/`
+                }
+            })
+        })
+
+
+    // Page for each sound
+    result.data.allSoundsCsv.nodes.forEach(sound => {
         createPage({
-            path: node.fields.slug,
+            path: sound.fields.slug,
             component: path.resolve(`./src/templates/sound.js`),
             context: {
                 // Data passed to context is available
                 // in page queries as GraphQL variables.
-                slug: node.fields.slug,
+                slug: sound.fields.slug,
             },
         });
     });
