@@ -2,24 +2,27 @@
     h1 {
         margin-bottom: 1rem;
     }
-    .description {
-        margin-top: 2rem;
+    .tag {
+        margin: 0 .25rem 0 0;
+    }
+    .soundPlayer {
+        margin: 1rem 0;
     }
     .downloadLink {
         margin: 2rem 1rem 0 0;
-    }
-    .tag {
-        margin: 0 .25rem 0 0;
     }
 }
 
 @media(min-width: $md) {
     #sound {
-        .downloadLink {
-            margin: 2rem 1.5rem 0 0;
-        }
         .tag {
             margin: 0 .5rem 0 0;
+        }
+        .soundPlayer {
+            margin: 2rem 0;
+        }
+        .downloadLink {
+            margin: 2rem 1.5rem 0 0;
         }
     }
 }

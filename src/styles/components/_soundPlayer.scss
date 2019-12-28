@@ -1,7 +1,7 @@
 .soundPlayer {
     .player {
         display: flex;
-        margin-top: 2rem;
+        align-items: center;
         .play {
             width: 48px;
             height: 48px;
@@ -12,31 +12,8 @@
             border: none;
             margin-right: 1rem;
         }
-        .seekBar {
-            position: relative;
-            display: flex;
-            align-items: center;
-            height: 48px;
-            background: $gray;
-            border-radius: 50px;
-            overflow: hidden;
+        #waveform {
             flex: 1;
-            cursor: pointer;
-            .progress {
-                position: absolute;
-                top: 0;
-                height: 100%;
-                width: 100%;
-                background: $primary-color;
-                transform-origin: left;
-                // transition: transform 1s;
-            }
-            .time {
-                position: relative;
-                margin-left: 1.5rem;
-                color: $white;
-                cursor: pointer;
-            }
         }
     }
 }

@@ -1,17 +1,12 @@
 import React, { Component } from "react";
+import WaveSurfer from 'wavesurfer.js';
 
 
 export default class SoundPlayer extends Component {
     constructor(props) {
         super(props);
 
-        const { src } = props;
-        this.sound = new Audio(src);
-
-        this.audioSeekBar = React.createRef();
-
         this.togglePlayback = this.togglePlayback.bind(this);
-        this.setCurrentTime = this.setCurrentTime.bind(this);
 
         this.state = {
             currentTime: 0,
@@ -23,9 +18,9 @@ export default class SoundPlayer extends Component {
     }
     togglePlayback() {
         if (this.state.isPlaying) {
-            this.sound.pause();
+            this.wavesurfer.pause();
         } else {
-            this.sound.play();
+            this.wavesurfer.play();
         }
 
         this.setState({
@@ -43,33 +38,41 @@ export default class SoundPlayer extends Component {
 
         return `${minutes}:${seconds}`
     }
-    setCurrentTime(event) {
-        const seekBar = this.audioSeekBar.current;
-
-        const pos = (event.pageX - (seekBar.getBoundingClientRect().x || seekBar.getBoundingClientRect().left)) / seekBar.getClientRects()[0].width;
-
-        this.sound.currentTime = this.state.duration * pos;
-
-        this.setState({
-            currentTime: this.state.duration * pos
-        });
-    }
     componentDidMount() {
-        this.sound.addEventListener("loadeddata", event => {
+        this.wavesurfer = WaveSurfer.create({
+            container: '#waveform',
+            waveColor: '#ccc',
+            progressColor: '#008457',
+            cursorColor: '#008457',
+            cursorWidth: 2,
+            responsive: true,
+            barWidth: 4,
+            barHeight: 2,
+            barRadius: 4,
+        });
+
+        this.wavesurfer.load(this.props.src);
+
+        this.wavesurfer.on("ready", () => {
+            const currentTime = this.wavesurfer.getCurrentTime();
+            const duration = this.wavesurfer.getDuration();
+
             this.setState({
-                currentTime: event.target.currentTime,
-                duration: event.target.duration,
+                currentTime,
+                duration,
                 isLoaded: true
             });
         })
-
-        this.sound.addEventListener("timeupdate", event => {
-            this.setState({
-                currentTime: event.target.currentTime
-            });
-        });
         
-        this.sound.addEventListener("ended", event => {
+        this.wavesurfer.on("audioprocess", () => {
+            const currentTime = this.wavesurfer.getCurrentTime();
+
+            this.setState({
+                currentTime
+            });
+        })
+
+        this.wavesurfer.on("finish", () => {
             this.setState({
                 isPlaying: false
             });
@@ -85,15 +88,9 @@ export default class SoundPlayer extends Component {
                     >
                         <i className={`fa ${this.state.isPlaying ? 'fa-pause' : 'fa-play'}`} aria-hidden="true"></i>
                     </button>
-                    <div
-                        className="seekBar"
-                        onClick={this.setCurrentTime}
-                        ref={this.audioSeekBar}
-                    >
-                        <div className="progress" style={{ transform: `scaleX(${!this.state.hasBeenPlayed ? 0 : (this.state.currentTime / this.state.duration)}` }}></div>
-                        <span className="time">{this.formatTime(this.state.currentTime)} / {this.formatTime(this.state.duration)}</span>
-                    </div>
+                    <div id="waveform"></div>
                 </div>
+                {/* <span className="time">{this.formatTime(Math.floor(this.state.currentTime))} / { this.formatTime(Math.floor(this.state.duration)) }</span> */}
             </div>
         )
     }
