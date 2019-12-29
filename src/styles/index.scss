@@ -15,11 +15,13 @@
 
 
 // Components
-@import 'components/soundPlayer';
 @import 'components/downloadLink';
+@import 'components/soundPlayer';
+@import 'components/soundCard';
 @import 'components/tag';
 
 // Pages
+@import 'pages/category';
 @import 'pages/categories';
 @import 'pages/sound';
 

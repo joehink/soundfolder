@@ -30,7 +30,7 @@ export default class Sound extends Component {
                 <Container size="sm">
                     <h1>{ sound.title }</h1>
                     { this.renderTags() }
-                    <SoundPlayer src={sound.mp3} />
+                    <SoundPlayer src={sound.mp3} id={sound.id} />
                     <p className="description">{ sound.description }</p>
                     <DownloadLink href={sound.wav}>WAV</DownloadLink>
                     <DownloadLink href={sound.mp3} mp3={true}>MP3</DownloadLink>

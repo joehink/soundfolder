@@ -40,7 +40,7 @@ export default class SoundPlayer extends Component {
     }
     componentDidMount() {
         this.wavesurfer = WaveSurfer.create({
-            container: '#waveform',
+            container: `#waveform-${this.props.id}`,
             waveColor: '#ccc',
             progressColor: '#008457',
             cursorColor: '#008457',
@@ -92,7 +92,7 @@ export default class SoundPlayer extends Component {
                     >
                         <i className={`fa ${this.state.isPlaying ? 'fa-pause' : 'fa-play'}`} aria-hidden="true"></i>
                     </button>
-                    <div id="waveform"></div>
+                    <div id={`waveform-${this.props.id}`} className="waveform"></div>
                 </div>
                 {/* <span className="time">{this.formatTime(Math.floor(this.state.currentTime))} / { this.formatTime(Math.floor(this.state.duration)) }</span> */}
             </div>
