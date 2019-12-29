@@ -2,6 +2,7 @@ import React from "react";
 import { Link, graphql } from "gatsby";
 
 import Container from "../components/container";
+import Footer from "../components/footer";
 import Nav from "../components/nav";
 
 export default ({ data }) => {
@@ -25,6 +26,7 @@ export default ({ data }) => {
                     { categories }
                 </ul>
             </Container>
+            <Footer />
         </div>
     )
 }

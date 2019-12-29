@@ -3,6 +3,7 @@ import { graphql } from "gatsby";
 
 import Container from "../components/container";
 import DownloadLink from "../components/downloadLink";
+import Footer from "../components/footer";
 import Nav from "../components/nav";
 import SoundCard from "../components/soundCard";
 import SoundPlayer from "../components/soundPlayer";
@@ -56,6 +57,7 @@ export default class Sound extends Component {
                         { this.renderRelatedSounds() }
                     </div>
                 </Container>
+                <Footer />
             </div>
         )
     }

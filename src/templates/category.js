@@ -2,6 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 
 import Container from "../components/container";
+import Footer from "../components/footer";
 import Nav from "../components/nav";
 import SoundCard from "../components/soundCard";
 
@@ -21,6 +22,7 @@ export default ({ data, pageContext }) => {
                     { soundCards }
                 </div>
             </Container>
+            <Footer />
         </div>
     )
 }
