@@ -3,4 +3,23 @@
     box-shadow: 0 3px 24px rgba(0, 0, 0, 0.15);
     border-radius: 8px;
     background: $white;
+    .soundLink {
+        margin-bottom: 1rem;
+        color: $black;
+        text-decoration: none;
+        display: block;
+    }
+    .tags {
+        margin-bottom: 2rem;
+    }
+    .tag {
+        margin-right: .25rem;
+        padding: .25rem .8rem;
+    }
+    .soundPlayer {
+        margin-bottom: 2rem;
+    }
+    .downloadLink {
+        margin-right: 1rem;
+    }
 }

@@ -2,6 +2,9 @@
     h1 {
         margin-bottom: 1rem;
     }
+    h2 {
+        margin: 6rem 0 3rem;
+    }
     .tag {
         margin: 0 .25rem 0 0;
     }
@@ -10,6 +13,11 @@
     }
     .downloadLink {
         margin: 2rem 1rem 0 0;
+    }
+    .sounds {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(325px, 1fr));
+        grid-gap: 2rem;
     }
 }
 

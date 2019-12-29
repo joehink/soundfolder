@@ -61,6 +61,8 @@ exports.createPages = async ({ graphql, actions }) => {
                 // Data passed to context is available
                 // in page queries as GraphQL variables.
                 slug: sound.fields.slug,
+                relatedTitle: `/${sound.title.split(' ').join('|')}/g`,
+                relatedCategory: `/${sound.categories.split(',').join('|')}/`
             },
         });
     });

@@ -21,6 +21,9 @@ export default class SoundPlayer extends Component {
             this.wavesurfer.pause();
         } else {
             this.wavesurfer.play();
+
+            const playButtons = document.querySelectorAll(`.soundPlayer.isPlaying .play`);
+            playButtons.forEach(button => button.click())
         }
 
         this.setState({
@@ -41,6 +44,7 @@ export default class SoundPlayer extends Component {
     componentDidMount() {
         this.wavesurfer = WaveSurfer.create({
             container: `#waveform-${this.props.id}`,
+            height: this.props.height || 128,
             waveColor: '#ccc',
             progressColor: '#008457',
             cursorColor: '#008457',
@@ -84,7 +88,7 @@ export default class SoundPlayer extends Component {
     }
     render() {
         return (
-            <div className="soundPlayer">
+            <div className={`soundPlayer ${this.state.isPlaying ? 'isPlaying' : ''}`}>
                 <div className="player">
                     <button 
                         onClick={this.togglePlayback}
