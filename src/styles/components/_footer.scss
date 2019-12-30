@@ -2,4 +2,108 @@
     margin-top: 12rem;
     padding: 4rem 0;
     background: $black;
+    color: $white;
+    text-align: center;
+    .contact {
+        margin-bottom: 3rem;
+        .logo {
+            width: 110px;
+            margin-bottom: .25rem;
+        }
+        h4 {
+            margin-bottom: 2rem;
+        }
+        .email {
+            font-weight: bold;
+            display: inline-block;
+            font-size: .75rem;
+            margin-bottom: 1rem;
+            color: $white;
+            text-decoration: none;
+        }
+        .copyright {
+            font-weight: bold;
+            display: block;
+            font-size: .75rem;
+        }
+    }
+    .categories {
+        margin-bottom: 3rem;
+        h2 {
+            margin-bottom: 1rem;
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            li {
+                text-transform: capitalize;
+                margin-bottom: 1rem;
+                a {
+                    text-decoration: none;
+                    color: $white;
+                    font-size: .75rem;
+                }
+            }
+        }
+    }
+    .faq {
+        h2 {
+            margin-bottom: 1rem;
+        }
+        a {
+            color: $white;
+            text-decoration: none;
+        }
+    }
+}
+
+@media(min-width: $md) {
+    .footer {
+        .contact {
+            margin-bottom: 4rem;
+            .logo {
+                width: 225px;
+                margin-bottom: 1rem;
+            }
+            .email {
+                font-size: 1.125rem;
+            }
+            .copyright {
+                font-size: 1.125rem;
+            }
+        }
+        .categories {
+            margin-bottom: 4rem;
+            ul {
+                li {
+                    a {
+                        font-size: 1.125rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(min-width: $lg) {
+    .footer .container {
+        text-align: left;
+        display: flex;
+        .section {
+            flex: 1;
+        }
+        .contact {
+            margin-bottom: 0;
+            margin-right: 6rem;
+        }
+        .categories {
+            margin-bottom: 0;
+            margin-right: 6rem;
+            ul {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    }
 }

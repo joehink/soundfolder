@@ -30,6 +30,14 @@ h3 {
     line-height: 1.5;
 }
 
+h4 {
+    margin: 0;
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: .75rem;
+    font-weight: normal;
+    line-height: 1.5; 
+}
+
 
 p {
     font-size: .9rem;
@@ -46,6 +54,9 @@ p {
     }
     h3 {
         font-size: 1.5rem;
+    }
+    h4 {
+        font-size: 1.125rem;
     }
     p {
         font-size: 1rem;

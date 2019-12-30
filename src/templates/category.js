@@ -12,18 +12,20 @@ export default ({ data, pageContext }) => {
     });
 
     return (
-        <div id="category">
-            <Container>
-                <Nav />
+        <>
+            <div id="category">
+                <Container>
+                    <Nav />
 
-                <h2>Category: <span className="categoryTitle">{ pageContext.category }</span></h2>
+                    <h2>Category: <span className="categoryTitle">{ pageContext.category }</span></h2>
 
-                <div className="sounds">
-                    { soundCards }
-                </div>
-            </Container>
+                    <div className="sounds">
+                        { soundCards }
+                    </div>
+                </Container>
+            </div>
             <Footer />
-        </div>
+        </>
     )
 }
 

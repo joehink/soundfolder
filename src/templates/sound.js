@@ -39,26 +39,28 @@ export default class Sound extends Component {
         const sound = this.props.data.sound;
 
         return (
-            <div id="sound">
-                <Container>
-                    <Nav />
-                </Container>
-                <Container size="sm">
-                    <h1>{ sound.title }</h1>
-                    { this.renderTags() }
-                    <SoundPlayer src={sound.mp3} id={sound.id} />
-                    <p className="description">{ sound.description }</p>
-                    <DownloadLink href={sound.wav}>WAV</DownloadLink>
-                    <DownloadLink href={sound.mp3} mp3={true}>MP3</DownloadLink>
-                </Container>
-                <Container>
-                    <h2>Related sounds</h2>
-                    <div className="sounds">
-                        { this.renderRelatedSounds() }
-                    </div>
-                </Container>
+            <>
+                <div id="sound">
+                    <Container>
+                        <Nav />
+                    </Container>
+                    <Container size="sm">
+                        <h1>{ sound.title }</h1>
+                        { this.renderTags() }
+                        <SoundPlayer src={sound.mp3} id={sound.id} />
+                        <p className="description">{ sound.description }</p>
+                        <DownloadLink href={sound.wav}>WAV</DownloadLink>
+                        <DownloadLink href={sound.mp3} mp3={true}>MP3</DownloadLink>
+                    </Container>
+                    <Container>
+                        <h2>Related sounds</h2>
+                        <div className="sounds">
+                            { this.renderRelatedSounds() }
+                        </div>
+                    </Container>
+                </div>
                 <Footer />
-            </div>
+            </>
         )
     }
 }

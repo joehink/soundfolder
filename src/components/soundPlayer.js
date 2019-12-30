@@ -51,6 +51,7 @@ export default class SoundPlayer extends Component {
             cursorWidth: 2,
             responsive: true,
             normalize: true,
+            hideScrollbar: true
             // barWidth: 4,
             // barHeight: 2,
             // barRadius: 4,
