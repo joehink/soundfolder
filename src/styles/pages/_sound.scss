@@ -16,7 +16,7 @@
     }
     .sounds {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(325px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
         grid-gap: 2rem;
     }
 }
@@ -31,6 +31,9 @@
         }
         .downloadLink {
             margin: 2rem 1.5rem 0 0;
+        }
+        .sounds {
+            grid-template-columns: repeat(auto-fit, minmax(325px, 1fr));
         }
     }
 }
