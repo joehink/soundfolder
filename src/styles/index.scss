@@ -3,7 +3,8 @@
 // Utilities
 @import 'utilities/variables';
 
-// Vendors *None yet
+// Vendors
+
 
 // Base
 @import 'base/normalize';
@@ -17,6 +18,8 @@
 // Components
 @import 'components/downloadLink';
 @import 'components/footer';
+@import 'components/hero';
+@import 'components/searchBar';
 @import 'components/soundPlayer';
 @import 'components/soundCard';
 @import 'components/tag';
@@ -25,6 +28,7 @@
 @import 'pages/category';
 @import 'pages/categories';
 @import 'pages/faq';
+@import 'pages/index';
 @import 'pages/sound';
 
 // Themes *None yet

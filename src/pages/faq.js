@@ -7,7 +7,6 @@ import Nav from "../components/nav";
 import { graphql } from "gatsby";
 
 export default ({ data }) => {
-    console.log(data);
     return (
         <>
             <Container>

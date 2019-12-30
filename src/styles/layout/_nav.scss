@@ -21,6 +21,14 @@
     }
 }
 
+.nav.white {
+    .navLinks {
+        .link {
+            color: $white
+        }
+    }
+}
+
 @media(min-width: $md) {
     .nav {
         padding: 1.5rem 0 4rem;

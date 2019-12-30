@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { FaPlay, FaPause } from 'react-icons/fa';
 import WaveSurfer from 'wavesurfer.js';
 
 
@@ -95,7 +96,7 @@ export default class SoundPlayer extends Component {
                         onClick={this.togglePlayback}
                         className="play"
                     >
-                        <i className={`fa ${this.state.isPlaying ? 'fa-pause' : 'fa-play'}`} aria-hidden="true"></i>
+                        { this.state.isPlaying ? <FaPause /> : <FaPlay /> }
                     </button>
                     <div id={`waveform-${this.props.id}`} className="waveform"></div>
                 </div>

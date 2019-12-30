@@ -1,0 +1,57 @@
+.hero {
+    height: 100vh;
+    max-height: 600px;
+    background: $primary-color;
+    .heroImg {
+        display: block;
+        width: 175px;
+        margin: 0 auto 2rem;
+    }
+    .searchBar {
+        margin: 0 auto 1.2rem;       
+    }
+    h2 {
+        color: white;
+        font-weight: normal;
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+    .recent {
+        background: none;
+        border: none;
+        color: $white;
+        display: flex;
+        font-size: .75rem;
+        margin: 0 auto;
+        outline: none;
+        cursor: pointer;
+        i {
+            margin-right: .25rem;
+            display: inline-flex;
+            align-items: flex-end;
+        }
+    }
+}
+
+@media(min-width: $md) {
+    .hero {
+        min-height: 800px;
+        max-height: auto;
+        .heroImg {
+            width: 300px;
+            margin: 0 auto 4rem;
+        } 
+        .searchBar {
+            margin: 0 auto 2rem;
+        }
+        h2 {
+            margin-bottom: 6rem;
+        }
+        .recent {
+            font-size: 1.2rem;
+            i {
+                margin-right: .5rem;
+            }
+        }
+    }
+}
