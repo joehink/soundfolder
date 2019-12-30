@@ -2,12 +2,36 @@
     p {
         margin: 1.5rem 0 3rem;
     }
+    .whoSection {
+        margin: 1.5rem 0 3rem;
+        .joe {
+            border-radius: 100%;
+            width: 175px;
+            display: block;
+            margin: 0 auto 1.5rem;
+        }
+        p {
+            margin: 0;
+        }
+    }
 }
 
 @media(min-width: $md) {
     #faq {
         p {
             margin: 1.5rem 0 4rem;
+        }
+        .whoSection {
+            display: flex;
+            align-items: flex-start;
+            margin: 1.5rem 0 4rem;
+            .joe {
+                margin: 0 2rem 0 0;
+            }
+            p {
+                flex: 1;
+                margin: 0;
+            }
         }
     }
 }
