@@ -1,0 +1,13 @@
+#faq {
+    p {
+        margin: 1.5rem 0 3rem;
+    }
+}
+
+@media(min-width: $md) {
+    #faq {
+        p {
+            margin: 1.5rem 0 4rem;
+        }
+    }
+}
