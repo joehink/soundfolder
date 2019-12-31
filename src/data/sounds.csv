@@ -3,4 +3,4 @@ id,title,date_added,mp3,wav,description,categories
 2,Mouth Poof Pop,12/27/2019,/sound/mp3/mouth_poof_pop_2.mp3,/sound/wav/mouth_poof_pop_2.wav,Magical poofing sound that you might hear in a cartoon when something of importance disappears.,"human,cartoon"
 3,Whoosh Mouth Swipe,12/27/2019,/sound/mp3/whoosh_mouth_swipe_3.mp3,/sound/wav/whoosh_mouth_swipe_3.wav,"When you hear this sound, you know someone just took something from you while you weren't paying attention.","human,cartoon"
 4,Pull Chain Light Switch,12/27/2019,/sound/mp3/pull_chain_light_switch_4.mp3,/sound/wav/pull_chain_light_switch_4.wav,The last thing you hear before a monster lunges at you in the creepy crawl space after turning on the light.,"mechanical,household"
-5,Sewer Rain,12/27/2019,/sound/mp3/sewer_rain_5.mp3,/sound/wav/sewer_rain_5.wav,"Rain drops fall into the echoing abyss of a roadside sewer drain. Sploosh, plunk, plop!","water,industrial"
+5,Sewer Rain,12/27/2019,/sound/mp3/sewer_rain_5.mp3,/sound/wav/sewer_rain_5.wav,"Rain water drops fall into the echoing abyss of a roadside sewer drain. Sploosh, plunk, plop!","water,industrial"

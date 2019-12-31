@@ -1,0 +1,24 @@
+#search {
+    h2 {
+        margin-bottom: 2rem;
+    }
+    .searchTerm {
+        color: $primary-color;
+    }
+    .sounds {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+        grid-gap: 2rem;
+    }
+}
+
+@media(min-width: $md) {
+    #search {
+        h2 {
+            margin-bottom: 3rem;
+        }
+        .sounds {
+            grid-template-columns: repeat(auto-fit, minmax(325px, 1fr));
+        }
+    }
+}

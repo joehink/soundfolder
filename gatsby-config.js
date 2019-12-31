@@ -28,6 +28,33 @@ module.exports = {
       },
     },
     {
+        resolve: 'gatsby-plugin-lunr',
+        options: {
+            languages: [{ name: 'en' }],
+            fields: [
+                { name: 'id', store: true },
+                { name: 'title', store: true, attributes: { boost: 20 } },
+                { name: 'description', store: true, attributes: { boost: 5 }},
+                { name: 'categories', store: true },
+                { name: 'mp3', store: true },
+                { name: 'wav', store: true },
+                { name: 'fields', store: true },
+            ],
+            resolvers: {
+                SoundsCsv: {
+                    id: node => node.id,
+                    title: node => node.title,
+                    description: node => node.description,
+                    categories: node => node.categories,
+                    mp3: node => node.mp3,
+                    wav: node => node.wav,
+                    fields:  node => ({ slug: node.fields.slug })
+                }
+            },
+            filename: 'search_index.json',
+        }
+    },
+    {
         resolve: `gatsby-source-filesystem`,
         options: {
           name: `data`,
