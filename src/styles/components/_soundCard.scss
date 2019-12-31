@@ -3,6 +3,11 @@
     box-shadow: 0 3px 24px rgba(0, 0, 0, 0.15);
     border-radius: 8px;
     background: $white;
+    h3 {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
     .soundLink {
         margin-bottom: 1rem;
         color: $black;

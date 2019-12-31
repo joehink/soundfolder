@@ -1,2 +1,21 @@
 #index {
+    .recentHeading {
+        margin: 4rem 0 2rem;
+    }
+    .sounds {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+        grid-gap: 2rem;
+    }
+}
+
+@media(min-width: $md) {
+    #index {
+        .recentHeading {
+            margin: 6rem 0 3rem;
+        }
+        .sounds {
+            grid-template-columns: repeat(auto-fit, minmax(325px, 1fr));
+        }
+    }
 }

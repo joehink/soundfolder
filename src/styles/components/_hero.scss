@@ -36,7 +36,7 @@
 @media(min-width: $md) {
     .hero {
         min-height: 800px;
-        max-height: auto;
+        max-height: unset;
         .heroImg {
             width: 300px;
             margin: 0 auto 4rem;
