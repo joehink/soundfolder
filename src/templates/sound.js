@@ -3,8 +3,9 @@ import { graphql } from "gatsby";
 
 import Container from "../components/container";
 import DownloadLink from "../components/downloadLink";
-import Footer from "../components/footer";
+import Layout from "../components/layout";
 import Nav from "../components/nav";
+import SEO from "../components/seo";
 import SoundCard from "../components/soundCard";
 import SoundPlayer from "../components/soundPlayer";
 import Tag from "../components/tag";
@@ -36,10 +37,11 @@ export default class Sound extends Component {
         });
     }
     render() {
-        const sound = this.props.data.sound;
+        const { sound } = this.props.data;
 
         return (
-            <>
+            <Layout>
+                <SEO title={sound.title} />
                 <div id="sound">
                     <Container>
                         <Nav />
@@ -59,8 +61,7 @@ export default class Sound extends Component {
                         </div>
                     </Container>
                 </div>
-                <Footer />
-            </>
+            </Layout>
         )
     }
 }

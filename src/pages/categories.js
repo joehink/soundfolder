@@ -2,8 +2,9 @@ import React from "react";
 import { Link, graphql } from "gatsby";
 
 import Container from "../components/container";
-import Footer from "../components/footer";
+import Layout from "../components/layout";
 import Nav from "../components/nav";
+import SEO from "../components/seo";
 
 export default ({ data }) => {
 
@@ -18,16 +19,18 @@ export default ({ data }) => {
 
 
     return (
-        <div id="categories">
-            <Container>
-                <Nav />
-                <h2>{ categories.length } categories</h2>
-                <ul className="categoryList">
-                    { categories }
-                </ul>
-            </Container>
-            <Footer />
-        </div>
+        <Layout>
+            <SEO title="Categories" />
+            <div id="categories">
+                <Container>
+                    <Nav />
+                    <h2>{ categories.length } categories</h2>
+                    <ul className="categoryList">
+                        { categories }
+                    </ul>
+                </Container>]
+            </div>
+        </Layout>   
     )
 }
 

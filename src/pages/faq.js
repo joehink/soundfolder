@@ -1,14 +1,16 @@
 import React from "react";
+import { graphql } from "gatsby";
 import Img from "gatsby-image"
 
 import Container from "../components/container";
-import Footer from "../components/footer";
+import Layout from "../components/layout";
 import Nav from "../components/nav";
-import { graphql } from "gatsby";
+import SEO from "../components/seo";
 
 export default ({ data }) => {
     return (
-        <>
+        <Layout>
+            <SEO title="FAQ" />
             <Container>
                 <Nav />
             </Container>
@@ -63,8 +65,7 @@ export default ({ data }) => {
                     </p>
                 </div>
             </Container>
-            <Footer />
-        </>
+        </Layout>
     )
 }
 

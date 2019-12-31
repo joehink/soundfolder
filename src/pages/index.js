@@ -23,7 +23,7 @@ export default ({ data }) => {
 
     return (
         <Layout>
-            <SEO title="Home" />
+            <SEO title="Free Sound Effects" />
             <div id="index">
                 <header className="hero">
                     <Container>
