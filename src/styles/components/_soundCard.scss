@@ -3,17 +3,16 @@
     box-shadow: 0 3px 24px rgba(0, 0, 0, 0.15);
     border-radius: 8px;
     background: $white;
+    transition: box-shadow .5s;
+    text-decoration: none;
     h3 {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-    }
-    .soundLink {
-        margin-bottom: 1rem;
+        margin-bottom: .75rem;
         color: $black;
-        text-decoration: none;
         display: block;
-    }
+    }   
     .tags {
         margin-bottom: 2rem;
     }
@@ -25,6 +24,10 @@
         margin-bottom: 2rem;
     }
     .downloadLink {
-        margin-right: 1rem;
+        margin: 0 1rem 0 0;
     }
+}
+
+.soundCard:hover {
+    box-shadow: 0 3px 24px rgba(0, 0, 0, 0.3);
 }

@@ -17,7 +17,9 @@ export default class SoundPlayer extends Component {
             hasBeenPlayed: false
         };
     }
-    togglePlayback() {
+    togglePlayback(e) {
+        e.preventDefault();
+        
         if (this.state.isPlaying) {
             this.wavesurfer.pause();
         } else {

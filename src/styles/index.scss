@@ -9,6 +9,7 @@
 // Base
 @import 'base/normalize';
 @import 'base/typography';
+@import 'base/animations';
 
 // Layout
 @import 'layout/container';
@@ -18,10 +19,10 @@
 // Components
 @import 'components/downloadLink';
 @import 'components/footer';
-@import 'components/hero';
 @import 'components/searchBar';
-@import 'components/soundPlayer';
 @import 'components/soundCard';
+@import 'components/soundCarousel';
+@import 'components/soundPlayer';
 @import 'components/tag';
 
 // Pages

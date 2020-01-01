@@ -1,5 +1,9 @@
 #index {
     background: $background;
+    .nav {
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
     .recentHeading {
         margin: 4rem 0 2rem;
     }
@@ -8,11 +12,54 @@
         grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
         grid-gap: 2rem;
     }
+    .hero {
+        height: 100vh;
+        background: $primary-color;
+        .heroContainer {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+
+            .heroContent {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+        .searchBar {
+            margin: 2rem auto 1.2rem;       
+        }
+        h2 {
+            color: white;
+            font-weight: normal;
+            text-align: center;
+        }
+        .recent {
+            background: none;
+            border: none;
+            color: $white;
+            display: flex;
+            font-size: .75rem;
+            margin: 0 auto 3rem;
+            outline: none;
+            cursor: pointer;
+            i {
+                margin-right: .25rem;
+                display: inline-flex;
+                align-items: flex-end;
+                animation-name: bounce;
+                animation-duration: 1s;
+                animation-iteration-count: infinite;
+                animation-delay: 2s;
+            }
+        }
+    }
 }
 
-html {
-    scroll-behavior: smooth;
-}
+// html {
+//     scroll-behavior: smooth;
+// }
 
 @media(min-width: $md) {
     #index {
@@ -21,6 +68,19 @@ html {
         }
         .sounds {
             grid-template-columns: repeat(auto-fit, minmax(325px, 1fr));
+        }
+        .hero {
+            min-height: 800px;
+            max-height: unset;
+            .searchBar {
+                margin: 1rem auto 2rem;
+            }
+            .recent {
+                font-size: 1.2rem;
+                i {
+                    margin-right: .5rem;
+                }
+            }
         }
     }
 }

@@ -1,16 +1,15 @@
 import React, { useRef } from "react"
 import { FaChevronDown } from "react-icons/fa";
 
-import bomb from "../images/bomb_1.svg";
-
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Container from "../components/container";
 import SoundCard from "../components/soundCard";
 import Nav from "../components/nav";
 import SearchBar from "../components/searchBar";
+import SoundCarousel from "../components/soundCarousel";
 
-const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)   
+const scrollToRef = (ref) => ref.current.scrollIntoView({ behavior: "smooth" })
 
 export default ({ data }) => {
 
@@ -27,13 +26,19 @@ export default ({ data }) => {
             <div id="index">
                 <header className="hero">
                     <Container>
-                        <Nav white />
-                        <img src={bomb} alt="placeholder" className="heroImg" />
-                        <SearchBar />
-                        <h2>Totally free sound effects. No attribution required.</h2>
-                        <button className="recent" onClick={executeScroll}>
-                            <i><FaChevronDown /></i>Recently added
-                        </button>
+                        <div className="heroContainer">
+                            <Nav white />
+                            <div className="heroContent">
+                                <div style={{ width: '100%' }}>
+                                    <SoundCarousel />
+                                    <SearchBar />
+                                    <h2>Totally free sound effects. No attribution required.</h2>
+                                </div>
+                            </div>
+                            <button className="recent" onClick={executeScroll}>
+                                <i><FaChevronDown /></i>Recently added
+                            </button>
+                        </div>
                     </Container>
                 </header>
                 <Container>

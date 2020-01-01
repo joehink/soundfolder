@@ -11,6 +11,12 @@
     }
 }
 
+.downloadLink:hover i {
+    animation-name: shake;
+    animation-duration: .25s;
+    animation-iteration-count: 2;
+}
+
 .downloadLink.mp3 {
     color: $primary-color;
 }
