@@ -40,7 +40,7 @@ export default ({ data }) => {
                     </p>
                     <h2>Who runs this website?</h2>
                     <div className="whoSection">
-                        <Img fluid={data.file.childImageSharp.fluid} className="joe" />
+                        <Img fluid={data.file.childImageSharp.fluid} className="joe" width="175" height="175" />
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
                             sed do eiusmod tempor incididunt ut labore et dolore magna 
@@ -73,7 +73,7 @@ export const query = graphql`
     query {
         file(relativePath: { eq: "joe.jpg" }) {
             childImageSharp {
-                fluid(maxWidth: 175) {
+                fluid(maxWidth: 275) {
                     ...GatsbyImageSharpFluid
                 }
             }

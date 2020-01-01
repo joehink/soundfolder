@@ -18,7 +18,7 @@ export default class SoundPlayer extends Component {
         };
     }
     togglePlayback(e) {
-        e.preventDefault();
+        e.stopPropagation();
         
         if (this.state.isPlaying) {
             this.wavesurfer.pause();
@@ -100,7 +100,14 @@ export default class SoundPlayer extends Component {
                     >
                         { this.state.isPlaying ? <FaPause /> : <FaPlay /> }
                     </button>
-                    <div id={`waveform-${this.props.id}`} className="waveform"></div>
+                    <div 
+                        id={`waveform-${this.props.id}`}
+                        className="waveform"
+                        onClick={(e) => e.stopPropagation()}
+                        role="button"
+                        tabIndex="0"
+                        onKeyDown={(e) => e.stopPropagation()}
+                    ></div>
                 </div>
                 {/* <span className="time">{this.formatTime(Math.floor(this.state.currentTime))} / { this.formatTime(Math.floor(this.state.duration)) }</span> */}
             </div>

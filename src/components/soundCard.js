@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "gatsby";
+import { navigate } from "gatsby";
 
 import DownloadLink from "../components/downloadLink";
 import SoundPlayer from "../components/soundPlayer";
@@ -13,8 +13,16 @@ export default class SoundCard extends Component {
             return <Tag key={category} to={`/${category}`}>{ category }</Tag>
         })
 
+        const goToSound = () => navigate(sound.fields.slug)
+
         return (
-            <Link to={this.props.sound.fields.slug} className="soundCard">
+            <div 
+                className="soundCard"
+                onClick={goToSound}
+                role="link"
+                tabIndex="0"
+                onKeyDown={goToSound}
+            >
                 <h3>{ sound.title }</h3>
                 <div className="tags">
                     { tags }
@@ -22,7 +30,7 @@ export default class SoundCard extends Component {
                 <SoundPlayer src={sound.mp3} id={sound.id} height={72}/>
                 <DownloadLink href={sound.wav}>WAV</DownloadLink>
                 <DownloadLink href={sound.mp3} mp3={true}>MP3</DownloadLink>
-            </Link>
+            </div>
         );
     }
 }

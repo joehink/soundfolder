@@ -5,6 +5,8 @@
     background: $white;
     transition: box-shadow .5s;
     text-decoration: none;
+    cursor: pointer;
+    outline: none;
     h3 {
         white-space: nowrap;
         overflow: hidden;
