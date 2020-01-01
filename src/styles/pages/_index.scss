@@ -40,10 +40,12 @@
             border: none;
             color: $white;
             display: flex;
-            font-size: .75rem;
+            font-size: 1rem;
             margin: 0 auto 3rem;
             outline: none;
             cursor: pointer;
+            padding-bottom: .25rem;
+            border-bottom: 2px solid $primary-color;
             i {
                 margin-right: .25rem;
                 display: inline-flex;
@@ -53,6 +55,9 @@
                 animation-iteration-count: infinite;
                 animation-delay: 2s;
             }
+        }
+        .recent:hover {
+            border-bottom: 2px solid $white;
         }
     }
 }

@@ -28,7 +28,7 @@ export default ({ data }) => {
                     <ul className="categoryList">
                         { categories }
                     </ul>
-                </Container>]
+                </Container>
             </div>
         </Layout>   
     )

@@ -27,7 +27,7 @@ export default ({ data }) => {
                 <header className="hero">
                     <Container>
                         <div className="heroContainer">
-                            <Nav white />
+                            <Nav white search={false} />
                             <div className="heroContent">
                                 <div style={{ width: '100%' }}>
                                     <SoundCarousel />

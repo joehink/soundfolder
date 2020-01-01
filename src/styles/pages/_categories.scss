@@ -14,8 +14,13 @@
         .link {
             text-decoration: none;
             color: $black;
-            font-size: .75rem;
+            font-size: 1rem;
             text-transform: capitalize;
+            border-bottom: 2px solid $background;
+            padding-bottom: .25rem;
+        }
+        .link:hover {
+            border-bottom: 2px solid $black;
         }
     }
 }

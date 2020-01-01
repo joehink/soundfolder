@@ -5,12 +5,11 @@ import { FaSearch } from 'react-icons/fa';
 export default class SearchBar extends Component {
     constructor(props) {
         super(props);
-
         this.handleInput = this.handleInput.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 
         this.state = {
-            searchTerm: ''
+            searchTerm: props.searchTerm || ''
         }
     }
     handleInput(event) {
@@ -21,7 +20,7 @@ export default class SearchBar extends Component {
     handleSubmit(event) {
         event.preventDefault();
         
-        navigate(`/search?keywords=${this.state.searchTerm}`)
+        navigate(`/search?keywords=${encodeURIComponent(this.state.searchTerm)}`)
     }
     render() {
         return (
@@ -41,6 +40,7 @@ export default class SearchBar extends Component {
                                 onInput={this.handleInput}
                                 placeholder={`Search for one of ${data.allSoundsCsv.totalCount} sounds`}
                                 name="keywords"
+                                defaultValue={this.state.searchTerm}
                             />
                             <button><FaSearch /></button>
                         </div>

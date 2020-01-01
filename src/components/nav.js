@@ -5,12 +5,13 @@ import classNames from "classnames";
 import logo from "../images/logo.svg";
 import logoWhite from "../images/logo-white.svg";
 
-export default ({ white = false }) => {
+import SearchBar from "../components/searchBar";
+
+export default ({ white = false, searchTerm, search = true }) => {
     const navClasses = classNames({
         nav: true,
         white
     });
-
     return (
         <nav className={navClasses}>
             <div className="navLinks">
@@ -18,6 +19,7 @@ export default ({ white = false }) => {
                 <Link to="/categories" className="link">Categories</Link>
                 <Link to="/faq" className="link">Why is it free?</Link>
             </div>
+        { search && <SearchBar searchTerm={searchTerm} /> }
         </nav>
     )
 };

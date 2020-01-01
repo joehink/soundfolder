@@ -5,6 +5,7 @@
     max-width: 700px;
     background: $white;
     display: flex;
+    transition: box-shadow .5s;
     input {
         padding: 1rem 0 1rem 1.5rem;
         font-size: .875rem;
@@ -17,15 +18,23 @@
     input::placeholder {
         color: $gray;
     }
+    input:focus ~ button {
+        color: $primary-color;
+    }
     button {
         background: none;
-        color: $primary-color;
+        color: $gray;
         border: none;
         outline: none;
         font-size: 1rem;
         padding: 0 1.5rem;
         cursor: pointer;
+        transition: color .5s;
     }
+}
+
+.searchBar:hover {
+    box-shadow: 0 3px 24px rgba(0, 0, 0, 0.3);
 }
 
 @media(min-width: $md) {

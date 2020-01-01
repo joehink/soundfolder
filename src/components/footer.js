@@ -34,7 +34,7 @@ export default () => {
                     <img src={logoWhite} alt="Sound Folder logo" className="logo" />
                     <h4>We curate and create sound effects for you</h4>
                     <a href="mailto:soundfolder@gmail.com" className="email">soundfolder@gmail.com</a>
-                    <span className="copyright">Joe Hinkley © 2019</span>
+                    <span className="copyright">Joe Hinkley © 2020</span>
                 </div>
                 <div className="categories section">
                     <h2>Categories</h2>
@@ -47,7 +47,7 @@ export default () => {
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
                         sed do eiusmod tempor incididunt ut labore et dolore magna 
-                        aliqua. Learn more by visiting our <Link to="/faq">FAQ page</Link>.
+                        aliqua. Learn more by visiting our <Link to="/faq" className="faqLink">FAQ page</Link>.
                     </p>
                 </div>
             </Container>
