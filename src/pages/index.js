@@ -1,5 +1,8 @@
 import React, { useRef } from "react"
 import { FaChevronDown } from "react-icons/fa";
+import Lottie from "react-lottie";
+
+import * as soundAnimation from '../images/animations/sound_animation.json';
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -7,7 +10,7 @@ import Container from "../components/container";
 import SoundCard from "../components/soundCard";
 import Nav from "../components/nav";
 import SearchBar from "../components/searchBar";
-import SoundCarousel from "../components/soundCarousel";
+// import SoundCarousel from "../components/soundCarousel";
 
 const scrollToRef = (ref) => ref.current.scrollIntoView({ behavior: "smooth" })
 
@@ -20,6 +23,15 @@ export default ({ data }) => {
         return <SoundCard sound={sound} key={sound.id} />
     });
 
+    const defaultOptions = {
+        loop: true,
+        autoplay: true, 
+        animationData: soundAnimation.default,
+        rendererSettings: {
+            preserveAspectRatio: 'xMidYMid slice'
+        }
+    }
+
     return (
         <Layout>
             <SEO title="Free Sound Effects" />
@@ -30,7 +42,13 @@ export default ({ data }) => {
                             <Nav white search={false} />
                             <div className="heroContent">
                                 <div style={{ width: '100%' }}>
-                                    <SoundCarousel />
+                                    {/* <SoundCarousel /> */}
+                                    <div style={{ maxWidth: 400, margin: '0 auto' }}>
+                                        <Lottie options={defaultOptions}
+                                            isStopped={false}
+                                            isPaused={false}
+                                        />
+                                    </div>
                                     <SearchBar />
                                     <h2>Totally free sound effects. No attribution required.</h2>
                                 </div>
