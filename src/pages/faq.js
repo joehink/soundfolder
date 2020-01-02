@@ -37,7 +37,7 @@ export default ({ data }) => {
                     </div>
                     <h2>How can I contact Joe?</h2>
                     <p>
-                        Send an email to <a href="mailto:soundfolder@gmail.com">joe@soundfolder.com</a>. If you’re looking for a specific 
+                        Send an email to <a href="mailto:joe@soundfolder.com">joe@soundfolder.com</a>. If you’re looking for a specific 
                         sound effect that I don’t already have, let me know and I’ll add it to 
                         my to-do list. As soon as it’s available for download on SoundFolder, 
                         I’ll reply to your email. I have no personal social media accounts and 
