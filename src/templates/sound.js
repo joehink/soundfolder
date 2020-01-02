@@ -41,7 +41,7 @@ export default class Sound extends Component {
 
         return (
             <Layout>
-                <SEO title={sound.title} />
+                <SEO title={sound.title} description={sound.description} />
                 <div id="sound">
                     <Container>
                         <Nav />
