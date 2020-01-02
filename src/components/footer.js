@@ -43,11 +43,12 @@ export default () => {
                     </ul>
                 </div>
                 <div className="faq section">
-                    <h2>Where do these sounds come from?</h2>
+                    <h2>Why is it free?</h2>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                        sed do eiusmod tempor incididunt ut labore et dolore magna 
-                        aliqua. Learn more by visiting our <Link to="/faq" className="faqLink">FAQ page</Link>.
+                        Paying for sound effects is a hassle and probably a dealbreaker 
+                        for a lot of people but free is simple and you don’t even need to give 
+                        credit to the author! Learn more by visiting 
+                        our <Link to="/faq" className="faqLink">FAQ page</Link>.
                     </p>
                 </div>
             </Container>

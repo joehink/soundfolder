@@ -2,6 +2,13 @@
     p {
         margin: 1.5rem 0 3rem;
     }
+    a {
+        color: $primary-color;
+        text-decoration: none;
+    }
+    a:hover {
+        border-bottom: 2px solid $primary-color;
+    }
     .whoSection {
         margin: 1.5rem 0 3rem;
         .joe {
