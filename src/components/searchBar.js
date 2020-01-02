@@ -41,8 +41,9 @@ export default class SearchBar extends Component {
                                 placeholder={`Search for one of ${data.allSoundsCsv.totalCount} sounds`}
                                 name="keywords"
                                 defaultValue={this.state.searchTerm}
+                                aria-label="Sound effect"
                             />
-                            <button><FaSearch /></button>
+                            <button aria-label="Search"><FaSearch /></button>
                         </div>
                     </form>
                 )}

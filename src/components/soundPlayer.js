@@ -56,9 +56,6 @@ export default class SoundPlayer extends Component {
             normalize: true,
             hideScrollbar: true,
             pixelRatio: 1
-            // barWidth: 4,
-            // barHeight: 2,
-            // barRadius: 4,
         });
 
         this.wavesurfer.load(this.props.src);
@@ -98,6 +95,7 @@ export default class SoundPlayer extends Component {
                     <button 
                         onClick={this.togglePlayback}
                         className="play"
+                        aria-label={ this.state.isPlaying ? "Pause" : "Play" }
                     >
                         { this.state.isPlaying ? <FaPause /> : <FaPlay /> }
                     </button>
@@ -106,6 +104,7 @@ export default class SoundPlayer extends Component {
                         className="waveform"
                         onClick={(e) => e.stopPropagation()}
                         role="button"
+                        aria-label="Scan sound effect timeline"
                         tabIndex="0"
                         onKeyDown={(e) => e.stopPropagation()}
                     ></div>
