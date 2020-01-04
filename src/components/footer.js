@@ -33,8 +33,8 @@ export default () => {
                 <div className="contact section">
                     <img src={logoWhite} alt="Sound Folder logo" className="logo" />
                     <h4>We curate and create sound effects for you</h4>
-                    <a href="mailto:joe@soundfolder.com" className="email">soundfolder@gmail.com</a>
-                    <span className="copyright">Joe Hinkley © 2020</span>
+                    <a href="mailto:joe@soundfolder.com" className="email">joe@soundfolder.com</a>
+                    <span className="copyright">SoundFolder © 2020</span>
                 </div>
                 <div className="categories section">
                     <h2>Categories</h2>

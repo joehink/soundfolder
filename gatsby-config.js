@@ -1,10 +1,18 @@
 module.exports = {
   siteMetadata: {
     title: `SoundFolder.com`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    description: `SoundFolder is a growing library of free sound effects with categories ranging from ordinary to cinematic. Royalty-free, open-source sound effects. No attribution required.`,
     author: `SoundFolder`,
   },
   plugins: [
+    `gatsby-plugin-sass`,
+    {
+        resolve: `gatsby-plugin-google-analytics`,
+        options: {
+          // replace "UA-XXXXXXXXX-X" with your own Tracking ID
+          trackingId: "UA-155327149-1"
+        },
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -62,7 +70,6 @@ module.exports = {
         },
     },
     `gatsby-transformer-csv`,
-    `gatsby-plugin-sass`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     `gatsby-plugin-offline`,
