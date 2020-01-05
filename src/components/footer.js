@@ -1,7 +1,7 @@
 import React from "react";
 import { useStaticQuery, Link, graphql } from "gatsby";
 
-import logoWhite from "../images/logo-white.svg";
+import logoWhite from "../images/logo-white.png";
 
 import Container from "./container";
 
