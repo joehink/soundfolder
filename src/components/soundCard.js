@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { navigate } from "gatsby";
+import { navigate, Link } from "gatsby";
 
 import DownloadLink from "../components/downloadLink";
 import SoundPlayer from "../components/soundPlayer";
@@ -23,7 +23,7 @@ export default class SoundCard extends Component {
                 tabIndex="0"
                 onKeyDown={goToSound}
             >
-                <h3>{ sound.title }</h3>
+                <Link to={sound.fields.slug}><h3>{ sound.title }</h3></Link>
                 <div className="tags">
                     { tags }
                 </div>
