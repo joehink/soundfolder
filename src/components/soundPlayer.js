@@ -55,7 +55,8 @@ export default class SoundPlayer extends Component {
             responsive: true,
             normalize: true,
             hideScrollbar: true,
-            pixelRatio: 1
+            pixelRatio: 1,
+            partialRender: true
         });
 
         this.wavesurfer.load(this.props.src);

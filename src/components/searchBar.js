@@ -39,6 +39,7 @@ export default class SearchBar extends Component {
                                 type="text"
                                 onInput={this.handleInput}
                                 placeholder={`Search for one of ${data.allSoundsCsv.totalCount} sounds`}
+                                autoComplete="off"
                                 name="keywords"
                                 defaultValue={this.state.searchTerm}
                                 aria-label="Sound effect"

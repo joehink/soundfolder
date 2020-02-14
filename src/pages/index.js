@@ -19,7 +19,10 @@ export default ({ data }) => {
     const myRef = useRef(null)
     const executeScroll = () => scrollToRef(myRef)
 
-    const soundCards = data.allSoundsCsv.nodes.map(sound => {
+    const  { nodes } = data.allSoundsCsv;
+    const recentSounds = nodes.slice(nodes.length - 8);
+
+    const soundCards = recentSounds.reverse().map(sound => {
         return <SoundCard sound={sound} key={sound.id} />
     });
 
@@ -72,7 +75,7 @@ export default ({ data }) => {
 
 export const query = graphql`
     query {
-        allSoundsCsv(sort: { fields: id, order: DESC }, limit: 8) {
+        allSoundsCsv {
             nodes {
                 id
                 title
