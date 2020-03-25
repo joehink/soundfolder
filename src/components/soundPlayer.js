@@ -47,7 +47,7 @@ export default class SoundPlayer extends Component {
     }
     async componentDidMount() {
         this.wavesurfer = WaveSurfer.create({
-            backend: 'MediaElementWebAudio',
+            backend: 'MediaElement',
             container: `#waveform-${this.props.id}`,
             height: this.props.height || 128,
             waveColor: '#ccc',
