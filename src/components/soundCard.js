@@ -27,9 +27,9 @@ export default class SoundCard extends Component {
                 <div className="tags">
                     { tags }
                 </div>
-                <SoundPlayer src={sound.mp3} id={sound.id} height={72}/>
-                <DownloadLink href={sound.wav}>WAV</DownloadLink>
-                <DownloadLink href={sound.mp3} mp3={true}>MP3</DownloadLink>
+                <SoundPlayer src={`/sound/mp3/${sound.file_name}.mp3`} fileName={sound.file_name} id={sound.id} height={72}/>
+                <DownloadLink href={`/sound/wav/${sound.file_name}.wav`}>WAV</DownloadLink>
+                <DownloadLink href={`/sound/mp3/${sound.file_name}.mp3`} mp3={true}>MP3</DownloadLink>
             </div>
         );
     }

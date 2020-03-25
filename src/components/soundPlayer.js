@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from 'axios';
 import { FaPlay, FaPause } from 'react-icons/fa';
 import WaveSurfer from 'wavesurfer.js';
 
@@ -44,8 +45,9 @@ export default class SoundPlayer extends Component {
 
         return `${minutes}:${seconds}`
     }
-    componentDidMount() {
+    async componentDidMount() {
         this.wavesurfer = WaveSurfer.create({
+            backend: 'MediaElementWebAudio',
             container: `#waveform-${this.props.id}`,
             height: this.props.height || 128,
             waveColor: '#ccc',
@@ -59,32 +61,37 @@ export default class SoundPlayer extends Component {
             partialRender: true
         });
 
-        this.wavesurfer.load(this.props.src);
+        try {
+            const res = await axios.get(`/sound/waveforms/${this.props.fileName}.json`);
+            this.wavesurfer.load(this.props.src, res.data.data, 'none');
 
-        this.wavesurfer.on("ready", () => {
-            const currentTime = this.wavesurfer.getCurrentTime();
-            const duration = this.wavesurfer.getDuration();
+            this.wavesurfer.on("ready", () => {
+                const currentTime = this.wavesurfer.getCurrentTime();
+                const duration = this.wavesurfer.getDuration();
 
-            this.setState({
-                currentTime,
-                duration,
-                isLoaded: true
+                this.setState({
+                    currentTime,
+                    duration,
+                    isLoaded: true
+                });
+            })
+            
+            this.wavesurfer.on("audioprocess", () => {
+                const currentTime = this.wavesurfer.getCurrentTime();
+
+                this.setState({
+                    currentTime
+                });
+            })
+
+            this.wavesurfer.on("finish", () => {
+                this.setState({
+                    isPlaying: false
+                });
             });
-        })
-        
-        this.wavesurfer.on("audioprocess", () => {
-            const currentTime = this.wavesurfer.getCurrentTime();
-
-            this.setState({
-                currentTime
-            });
-        })
-
-        this.wavesurfer.on("finish", () => {
-            this.setState({
-                isPlaying: false
-            });
-        });
+        } catch (error) {
+            console.error(error);
+        }
     }
     componentWillUnmount() {
         this.wavesurfer.destroy();

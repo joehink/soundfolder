@@ -49,10 +49,10 @@ export default class Sound extends Component {
                     <Container size="sm">
                         <h1>{ sound.title }</h1>
                         { this.renderTags() }
-                        <SoundPlayer src={sound.mp3} id={sound.id} />
+                        <SoundPlayer src={`/sound/mp3/${sound.file_name}.mp3`} fileName={sound.file_name} id={sound.id} />
                         <p className="description">{ sound.description }</p>
-                        <DownloadLink href={sound.wav}>WAV</DownloadLink>
-                        <DownloadLink href={sound.mp3} mp3={true}>MP3</DownloadLink>
+                        <DownloadLink href={`/sound/wav/${sound.file_name}.wav`}>WAV</DownloadLink>
+                        <DownloadLink href={`/sound/mp3/${sound.file_name}.mp3`} mp3={true}>MP3</DownloadLink>
                     </Container>
                     <Container>
                         <h2>Related sounds</h2>
@@ -72,8 +72,7 @@ query($slug: String!, $relatedTitle: String!, $relatedCategory: String!) {
         title
         description
         categories
-        mp3
-        wav
+        file_name
     },
     relatedSounds: allSoundsCsv(filter: { title: { regex: $relatedTitle }, categories: { regex: $relatedCategory }, fields: { slug: { ne: $slug } } }, limit: 8) {
         nodes {
@@ -81,8 +80,7 @@ query($slug: String!, $relatedTitle: String!, $relatedCategory: String!) {
             title
             description
             categories
-            mp3
-            wav
+            file_name
             fields {
                 slug
             }
@@ -94,8 +92,7 @@ query($slug: String!, $relatedTitle: String!, $relatedCategory: String!) {
             title
             description
             categories
-            mp3
-            wav
+            file_name
             fields {
                 slug
             }

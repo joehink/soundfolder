@@ -81,8 +81,7 @@ export const query = graphql`
                 title
                 description
                 categories
-                mp3
-                wav
+                file_name
                 fields {
                     slug
                 }
