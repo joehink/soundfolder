@@ -43,8 +43,7 @@ module.exports = {
                 { name: 'title', store: true, attributes: { boost: 20 } },
                 { name: 'description', store: true, attributes: { boost: 5 }},
                 { name: 'categories', store: true },
-                { name: 'mp3', store: true },
-                { name: 'wav', store: true },
+                { name: 'file_name', store: true },
                 { name: 'fields', store: true },
             ],
             resolvers: {
@@ -53,8 +52,7 @@ module.exports = {
                     title: node => node.title,
                     description: node => node.description,
                     categories: node => node.categories,
-                    mp3: node => node.mp3,
-                    wav: node => node.wav,
+                    file_name: node => node.file_name,
                     fields:  node => ({ slug: node.fields.slug })
                 }
             },
